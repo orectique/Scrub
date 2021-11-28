@@ -1,13 +1,13 @@
 {
-    "name": "AgentX",
-    "description": "Your personal FBI agent.",
+    "name": "Scrub",
+    "description": "Let's get rid of your browser history.",
     "version": "1.0",
     "manifest_version": 3,
 
     "background" : {
         "service_worker": "background.js"
     },
-    "permissions": ["storage", "tts", "browsingData"],
+    "permissions": ["browsingData"],
     "action": {
         "default_popup": "popup.html",
         "default_icon": {

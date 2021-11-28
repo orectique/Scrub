@@ -1,33 +1,56 @@
-
-var callback = function () {
-    document.getElementById("test").innerHTML = 'It worked';
-    chrome.tts.speak('The evidence has been purged. Good luck, soldier.', { 'lang': 'en-US', 'rate': 1.0 });
-};
-
 var run_clear = function () {
 
-    let hours = document.getElementById("hours").value;
-    var milliseconds = 1000 * 60 * 60 * hours;
-    var delta = (new Date()).getTime() - milliseconds;
-    document.getElementById("test").innerHTML = 'Time added';
+    let cache = document.getElementById("cache").checked;
 
-    chrome.browsingData.remove({
-        "since": delta
-    }, {
-        "appcache": true,
-        "cache": true,
-        "cacheStorage": true,
-        "cookies": true,
-        "downloads": true,
-        "fileSystems": true,
-        "formData": true,
-        "history": true,
-        "indexedDB": true,
-        "localStorage": true,
-        "passwords": true,
-        "serviceWorkers": true,
-        "webSQL": true
-    }, callback);
+    let cookies = document.getElementById("cookies").checked;
+
+    let downloads = document.getElementById("downloads").checked;
+    let history = document.getElementById("history").checked;
+    let others = document.getElementById("others").checked;
+
+    let hours = document.getElementById("hours").value;
+    let milliseconds = 1000 * 60 * 60 * hours;
+    let delta = (new Date()).getTime() - milliseconds;
+
+
+    if (cache) {
+        chrome.browsingData.remove({
+            "since": delta
+        }, {
+            "appcache": cache,
+            "cache": cache,
+            "cacheStorage": cache,
+        });
+
+    }
+    
+    if (cookies) {
+        chrome.browsingData.removeCookies({"since": delta});
+    }
+
+    if (downloads) {
+        chrome.browsingData.removeDownloads({"since": delta});
+    }
+
+    if (history) {
+        chrome.browsingData.removeHistory({"since": delta});
+    }
+
+    if (others) {
+        chrome.browsingData.remove({
+            "since": delta
+          }, {
+            "fileSystems": true,
+            "formData": true,
+            "indexedDB": true,
+            "localStorage": true,
+            "passwords": true,
+            "serviceWorkers": true,
+            "webSQL": true
+          });
+    }
+
+    alert('The data has been cleared.');
 
 }
 

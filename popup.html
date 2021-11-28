@@ -5,10 +5,49 @@
 </head>
 
 <body>
-    <h3>Let's get rid of your evidence.</h3>
-    <input type="number" id="hours">
-    <button id="lets_clear">Clear</button>
-    <p id='test'></p>
+<div class="overlay">
+    <!-- LOGN IN FORM by Omar Dsoky -->
+    <form>
+       <!--   con = Container  for items in the form-->
+       <div class="con">
+       <!--     Start  header Content  -->
+       <header class="head-form">
+          <h2>Scrub</h2>
+          <!--     A welcome message or an explanation of the login form -->
+          <p>Let's get rid of your browser history.</p>
+       </header>
+       <!--     End  header Content  -->
+       <br>
+       <div class="field-set">
+
+            <input class="form-input" id="hours" type="number" min="1" placeholder="1" required>
+         
+          <br>
+          <br>
+         
+          <input type="checkbox" id="cache" name="cache" value="true">
+          <label for="cache">Cache</label><br>
+          <input type="checkbox" id="cookies" name="cookies" value="true" checked>
+          <label for="cookies">Cookies</label><br>
+          <input type="checkbox" id="downloads" name="downloads" value="true">
+          <label for="downloads">Downloads</label><br>
+          <input type="checkbox" id="history" name="history" value="true" checked>
+          <label for="history">History</label><br>
+          <input type="checkbox" id="others" name="others" value="true">
+          <label for="others">Database, SQL, Forms, Passwords, Local</label>
+          
+          <br>
+          <br>
+    <!--        buttons -->
+    <!--      button LogIn -->
+          <button id="lets_clear">Clear</button>
+       </div>
+         
+    <!--   End Conrainer  -->
+      </div>
+      <!-- End Form -->
+    </form>
+    </div>
     <script src="popup.js"></script>
 </body>
 
